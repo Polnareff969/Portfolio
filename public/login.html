@@ -5,67 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login • garou</title>
   <link rel="stylesheet" href="/css/style.css">
-  <style>
-    .login-container {
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 30px;
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 5px 20px var(--shadow);
-    }
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-    .login-container input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1rem;
-    }
-    .login-container button {
-      width: 100%;
-      padding: 12px;
-      background: var(--accent);
-      border: none;
-      border-radius: 5px;
-      color: var(--text);
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .login-container button:hover {
-      opacity: 0.9;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 15px;
-      color: var(--accent);
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Admin Login</h2>
-    <form action="/login" method="POST">
-      <input type="password" name="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
-    <a href="/" class="back-link">← Back to Portfolio</a>
+  <div class="container">
+    <div class="login-wrapper">
+      <form action="/login" method="POST" class="login-form">
+        <h2>Admin Access</h2>
+        <input type="password" name="password" placeholder="Key" required>
+        <button type="submit">Unlock</button>
+        <a href="/" class="back-link">Return</a>
+      </form>
+    </div>
   </div>
-
   <script>
     const html = document.documentElement;
-    const saved = localStorage.getItem('theme') || 'dark';
-    html.setAttribute('data-theme', saved);
+    html.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
   </script>
 </body>
 </html>
