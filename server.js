@@ -180,7 +180,7 @@ app.post('/api/upload', requireAuth, multer().single('photo'), async (req, res) 
       throw error;
     }
 
-    const {  publicUrlData } = supabase.storage
+    const { data: publicUrlData } = supabase.storage
       .from('portfolio-photos')
       .getPublicUrl(fileName);
 
