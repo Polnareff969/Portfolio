@@ -7,50 +7,42 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <div class="header-content">
         <a href="/" class="logo">garou</a>
-        <button class="menu-toggle" aria-label="Menu">
-          <span class="hamburger"></span>
-        </button>
+        <nav class="main-nav">
+          <a href="/art" class="nav-item">Art</a>
+          <a href="/philosophy" class="nav-item">Philosophy</a>
+          <a href="/tools" class="nav-item">Tools</a>
+          <a href="/misc" class="nav-item">Misc</a>
+        </nav>
       </div>
     </div>
   </header>
 
   <main class="site-main">
-    <section class="hero">
-      <div class="container">
+    <div class="container">
+      <section class="profile-section">
         <div class="profile">
           <img src="https://i.pravatar.cc/300?img=63" alt="Profile" class="profile-pic">
           <h1>garou</h1>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="content">
-      <div class="container">
+      <section class="content-section">
         <div class="photos-grid" id="photos-grid">
           <div class="placeholder">
-            <div class="placeholder-icon">🎨</div>
+            <div class="placeholder-icon">📸</div>
             <p>No work yet</p>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <nav class="mobile-menu">
-    <div class="menu-content">
-      <a href="/art" class="menu-item">Art</a>
-      <a href="/philosophy" class="menu-item">Philosophy</a>
-      <a href="/tools" class="menu-item">Tools</a>
-      <a href="/misc" class="menu-item">Misc</a>
+      </section>
     </div>
-  </nav>
+  </main>
 
   <button class="theme-toggle" aria-label="Toggle theme">
     <span class="theme-icon">☀️</span>
