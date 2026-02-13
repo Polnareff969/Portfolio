@@ -180,16 +180,16 @@ app.post('/api/upload', requireAuth, multer().single('photo'), async (req, res) 
       throw error;
     }
 
-    const {  urlData } = supabase.storage
+    const {  publicUrlData } = supabase.storage
       .from('portfolio-photos')
       .getPublicUrl(fileName);
 
     await pool.query(
       'INSERT INTO photos (filename, supabase_path, public_url, caption) VALUES ($1, $2, $3, $4)',
-      [file.originalname, fileName, urlData.publicUrl, caption || '']
+      [file.originalname, fileName, publicUrlData.publicUrl, caption || '']
     );
 
-    res.json({ success: true, url: urlData.publicUrl });
+    res.json({ success: true, url: publicUrlData.publicUrl });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
