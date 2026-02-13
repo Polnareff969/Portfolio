@@ -5,42 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Art • garou</title>
   <link rel="stylesheet" href="/css/style.css">
-  <style>
-    .page-header {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .page-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .back-btn {
-      display: inline-block;
-      margin-top: 15px;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .back-btn:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <header class="page-header">
-      <div class="profile-pic" style="width:100px;height:100px;font-size:35px;margin:0 auto 15px;">🎨</div>
-      <h1>Art Gallery</h1>
-      <p class="bio">Visual expressions and captured moments</p>
-      <button id="theme-toggle" class="theme-btn">🌓</button>
-      <a href="/" class="back-btn">← Back to Home</a>
+    <header>
+      <nav>
+        <a href="/" class="logo">garou</a>
+        <div class="nav-links">
+          <a href="/art">Art</a>
+          <a href="/philosophy">Philosophy</a>
+          <a href="/tools">Tools</a>
+          <a href="/misc">Misc</a>
+          <button id="theme-toggle">MODE</button>
+        </div>
+      </nav>
     </header>
-
-    <div class="photos-grid" id="photos-grid">
-      <p>Loading artwork...</p>
-    </div>
+    <main>
+      <div class="page-intro">
+        <h1>Art</h1>
+        <p>Visual expressions and captured moments.</p>
+      </div>
+      <section class="grid" id="photos-grid">
+        <div class="loading">Loading artwork...</div>
+      </section>
+    </main>
   </div>
-
   <script src="/js/script.js"></script>
 </body>
 </html>
