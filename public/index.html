@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>garou</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="profile">
+        <div class="profile-pic">👤</div>
+        <h1>garou</h1>
+        <p class="bio">digital wanderer • philosophy • art</p>
+        <button id="theme-toggle" class="theme-btn">🌓</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="photos-grid" id="photos-grid">
+        <p>Loading photos...</p>
+      </div>
+    </main>
+
+    <div class="burger-menu" id="burger">☰</div>
+  </div>
+
+  <script src="/js/script.js"></script>
+  <script>
+    // Burger menu navigation
+    document.getElementById('burger').addEventListener('click', () => {
+      const choice = prompt('Navigate to:\n1. Art\n2. Philosophy\n3. Tools\n4. Misc\n\nEnter number:');
+      if (choice === '1') window.location.href = '/art';
+      else if (choice === '2') window.location.href = '/philosophy';
+      else if (choice === '3') window.location.href = '/tools';
+      else if (choice === '4') window.location.href = '/misc';
+    });
+  </script>
+</body>
+</html>

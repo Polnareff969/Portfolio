@@ -1,0 +1,148 @@
+:root {
+  --bg: #1a1a1a;
+  --text: #e0e0e0;
+  --accent: #6b4226;
+  --border: #333;
+  --card-bg: #252525;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+  --bg: #f8f5f0;
+  --text: #2d251e;
+  --accent: #8b5a2b;
+  --border: #d4c8b5;
+  --card-bg: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 40px;
+  border: 2px solid var(--border);
+  transition: transform 0.3s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+}
+
+.profile h1 {
+  font-size: 2.2rem;
+  margin: 10px 0;
+  letter-spacing: 1px;
+}
+
+.bio {
+  opacity: 0.85;
+  margin: 8px 0 15px;
+  font-size: 1.1rem;
+}
+
+.theme-btn {
+  background: var(--accent);
+  border: none;
+  color: var(--text);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: opacity 0.2s;
+  margin-top: 10px;
+}
+
+.theme-btn:hover {
+  opacity: 0.9;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.photo-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;  box-shadow: 0 4px 10px var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px var(--shadow);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.photo-card img:hover {
+  opacity: 0.95;
+}
+
+.photo-caption {
+  padding: 10px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1000;
+  user-select: none;
+  color: var(--text);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.burger-menu:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .profile-pic { width: 90px; height: 90px; font-size: 30px; }
+  .profile h1 { font-size: 1.8rem; }
+  .photos-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .photo-card img { height: 150px; }
+  .burger-menu { font-size: 1.5rem; }}
