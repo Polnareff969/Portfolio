@@ -5,37 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>garou</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="profile">
-        <div class="profile-pic">👤</div>
-        <h1>garou</h1>
-        <p class="bio">digital wanderer • philosophy • art</p>
-        <button id="theme-toggle" class="theme-btn">🌓</button>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">garou</a>
+        <button class="menu-toggle" aria-label="Menu">
+          <span class="hamburger"></span>
+        </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <div class="photos-grid" id="photos-grid">
-        <p>Loading photos...</p>
+  <main class="site-main">
+    <section class="hero">
+      <div class="container">
+        <div class="profile">
+          <img src="https://i.pravatar.cc/300?img=63" alt="Profile" class="profile-pic">
+          <h1>garou</h1>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <div class="burger-menu" id="burger">☰</div>
-  </div>
+    <section class="content">
+      <div class="container">
+        <div class="photos-grid" id="photos-grid">
+          <div class="placeholder">
+            <div class="placeholder-icon">🎨</div>
+            <p>No work yet</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mobile-menu">
+    <div class="menu-content">
+      <a href="/art" class="menu-item">Art</a>
+      <a href="/philosophy" class="menu-item">Philosophy</a>
+      <a href="/tools" class="menu-item">Tools</a>
+      <a href="/misc" class="menu-item">Misc</a>
+    </div>
+  </nav>
+
+  <button class="theme-toggle" aria-label="Toggle theme">
+    <span class="theme-icon">☀️</span>
+  </button>
 
   <script src="/js/script.js"></script>
-  <script>
-    // Burger menu navigation
-    document.getElementById('burger').addEventListener('click', () => {
-      const choice = prompt('Navigate to:\n1. Art\n2. Philosophy\n3. Tools\n4. Misc\n\nEnter number:');
-      if (choice === '1') window.location.href = '/art';
-      else if (choice === '2') window.location.href = '/philosophy';
-      else if (choice === '3') window.location.href = '/tools';
-      else if (choice === '4') window.location.href = '/misc';
-    });
-  </script>
 </body>
 </html>
