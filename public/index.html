@@ -1,41 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>garou</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>garou</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <nav>
-        <a href="/" class="logo">garou</a>
-        <div class="nav-links">
-          <a href="/art">Art</a>
-          <a href="/philosophy">Philosophy</a>
-          <a href="/tools">Tools</a>
-          <a href="/misc">Misc</a>
-          <button id="theme-toggle">MODE</button>
-        </div>
-      </nav>
-    </header>
 
-    <main>
-      <section class="profile-hero">
-        <img src="https://i.pravatar.cc/300?img=63" alt="garou" class="avatar-img">
-        <div class="profile-info">
-          <h1>garou</h1>
-          <p>Researcher, developer, visualist.</p>
-        </div>
-      </section>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/" class="logo">garou</a>
+                <div class="nav-links">
+                    <a href="/art">Art</a>
+                    <a href="/philosophy">Philosophy</a>
+                    <a href="/tools">Tools</a>
+                    <a href="/misc">Misc</a>
+                    <button id="theme-toggle">MODE</button>
+                </div>
+            </nav>
+        </header>
 
-      <section class="grid" id="photos-grid">
-        <div class="loading">Loading collection...</div>
-      </section>
-    </main>
-  </div>
-  <script src="/js/script.js"></script>
+        <main>
+            <section class="profile-hero">
+                <div class="hero-image-wrapper">
+                    <img src="https://i.pravatar.cc/1200?img=63" alt="garou" class="avatar-img">
+                </div>
+                
+                <div class="profile-info">
+                    <h1>garou</h1>
+                    <p class="lead-text">
+                        Researcher, developer, visualist. 
+                        Exploring the architecture of digital utility and human inquiry.
+                    </p>
+                </div>
+            </section>
+
+            <section class="grid-header">
+                <span class="label">Featured Works</span>
+            </section>
+            
+            <section class="grid" id="photos-grid">
+                <div class="loading-state">Initialising collection...</div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="text-dim">© 2026 garou</span>
+                <div class="footer-links">
+                    <a href="/login" class="text-dim">Admin</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/js/script.js"></script>
 </body>
 </html>
