@@ -5,498 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin • garou</title>
   <link rel="stylesheet" href="/css/style.css">
-  <style>
-    .admin-container {
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 5px 20px var(--shadow);
-    }
-    .tabs {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 25px;
-      border-bottom: 2px solid var(--border);
-      overflow-x: auto;
-    }
-    .tab {
-      padding: 12px 20px;
-      cursor: pointer;
-      white-space: nowrap;
-      border-bottom: 3px solid transparent;
-      font-size: 0.95rem;
-    }
-    .tab:hover {
-      opacity: 0.8;
-    }
-    .tab.active {
-      border-bottom: 3px solid var(--accent);
-      font-weight: bold;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;      font-size: 0.9rem;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group url {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1rem;
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      background: var(--accent);
-      border: none;
-      border-radius: 5px;
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .submit-btn:hover {
-      opacity: 0.9;
-    }
-    .status {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
-    }
-    .status.show {
-      display: block;
-    }
-    .status.success {
-      background: #2d502d;
-      color: white;
-    }
-    .status.error {
-      background: #6b2d2d;
-      color: white;
-    }
-    .item-list {      margin-top: 25px;
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .item-card {
-      background: var(--bg);
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border-left: 3px solid var(--accent);
-    }
-    .item-card h4 {
-      margin: 0 0 5px 0;
-      font-size: 1.1rem;
-    }
-    .item-card p {
-      margin: 5px 0;
-      opacity: 0.85;
-      font-size: 0.9rem;
-    }
-    .item-card a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.85rem;
-    }
-    .delete-btn {
-      background: #6b2d2d;
-      border: none;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      float: right;
-    }
-    .logout-btn {
-      display: block;
-      width: fit-content;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background: #6b2d2d;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .empty-state {
-      text-align: center;      padding: 30px;
-      opacity: 0.6;
-    }
-  </style>
 </head>
 <body>
-  <div class="admin-container">
-    <h1 style="text-align:center; margin-bottom:20px;">🎛️ Admin Panel</h1>
-    
-    <div class="tabs">
-      <div class="tab active" data-tab="photos">📸 Photos</div>
-      <div class="tab" data-tab="tools">🛠️ Tools</div>
-      <div class="tab" data-tab="philosophy">💭 Philosophy</div>
-      <div class="tab" data-tab="misc">🔮 Misc</div>
-    </div>
+  <div class="container">
+    <header>
+      <nav>
+        <a href="/" class="logo">garou / admin</a>
+        <div class="nav-links">
+          <a href="/logout" style="color: #ff4444;">Logout</a>
+        </div>
+      </nav>
+    </header>
 
-    <!-- Photos Tab -->
-    <div id="photos-tab" class="tab-content active">
-      <h2>Upload Photo</h2>
-      <form id="photo-form" class="upload-form">
-        <div class="form-group">
-          <label for="photo-file">Photo *</label>
-          <input type="file" id="photo-file" name="photo" accept="image/*" required>
-        </div>
-        <div class="form-group">
-          <label for="photo-caption">Caption</label>
-          <textarea id="photo-caption" name="caption" placeholder="Optional caption..."></textarea>
-        </div>
-        <button type="submit" class="submit-btn">📤 Upload Photo</button>
-      </form>
-      <div id="photo-status" class="status"></div>
-      
-      <div class="item-list" id="photos-list">
-        <p>Loading...</p>
+    <div class="admin-grid">
+      <div class="admin-sidebar">
+        <button class="tab-btn active" onclick="showTab('photos')">Photos</button>
+        <button class="tab-btn" onclick="showTab('tools')">Tools</button>
+        <button class="tab-btn" onclick="showTab('philosophy')">Philosophy</button>
+        <button class="tab-btn" onclick="showTab('misc')">Misc</button>
+      </div>
+
+      <div class="admin-content">
+        <section id="photos-tab" class="admin-section active">
+          <form id="photo-form">
+            <input type="file" id="photo-file" accept="image/*" required>
+            <textarea id="photo-caption" placeholder="Caption"></textarea>
+            <button type="submit">Upload</button>
+          </form>
+          <div id="photos-admin-list" class="mini-list"></div>
+        </section>
+
+        <section id="tools-tab" class="admin-section">
+          <form id="tool-form">
+            <input type="text" id="tool-name" placeholder="Name" required>
+            <input type="url" id="tool-url" placeholder="URL" required>
+            <textarea id="tool-desc" placeholder="Description"></textarea>
+            <button type="submit">Add Tool</button>
+          </form>
+          <div id="tools-admin-list" class="mini-list"></div>
+        </section>
+
+        <section id="philosophy-tab" class="admin-section">
+          <form id="philosophy-form">
+            <input type="text" id="philosophy-title" placeholder="Title" required>
+            <textarea id="philosophy-content" placeholder="Content" required></textarea>
+            <button type="submit">Add Philosophy</button>
+          </form>
+          <div id="philosophy-admin-list" class="mini-list"></div>
+        </section>
+
+        <section id="misc-tab" class="admin-section">
+          <form id="misc-form">
+            <input type="text" id="misc-title" placeholder="Title" required>
+            <textarea id="misc-content" placeholder="Content"></textarea>
+            <input type="url" id="misc-url" placeholder="URL (Optional)">
+            <button type="submit">Add Misc</button>
+          </form>
+          <div id="misc-admin-list" class="mini-list"></div>
+        </section>
       </div>
     </div>
-
-    <!-- Tools Tab -->
-    <div id="tools-tab" class="tab-content">
-      <h2>Add Tool</h2>
-      <form id="tool-form">
-        <div class="form-group">
-          <label for="tool-name">Name *</label>
-          <input type="text" id="tool-name" name="name" placeholder="e.g., Photo Editor" required>
-        </div>
-        <div class="form-group">
-          <label for="tool-url">URL *</label>
-          <input type="url" id="tool-url" name="url" placeholder="https://example.com" required>
-        </div>
-        <div class="form-group">          <label for="tool-desc">Description</label>
-          <textarea id="tool-desc" name="description" placeholder="Optional description..."></textarea>
-        </div>
-        <button type="submit" class="submit-btn">➕ Add Tool</button>
-      </form>
-      <div id="tool-status" class="status"></div>
-      
-      <div class="item-list" id="tools-list">
-        <p>Loading...</p>
-      </div>
-    </div>
-
-    <!-- Philosophy Tab -->
-    <div id="philosophy-tab" class="tab-content">
-      <h2>Add Philosophy Entry</h2>
-      <form id="philosophy-form">
-        <div class="form-group">
-          <label for="philosophy-title">Title *</label>
-          <input type="text" id="philosophy-title" name="title" placeholder="e.g., On Existence" required>
-        </div>
-        <div class="form-group">
-          <label for="philosophy-content">Content *</label>
-          <textarea id="philosophy-content" name="content" placeholder="Your thoughts..." required></textarea>
-        </div>
-        <button type="submit" class="submit-btn">✍️ Add Entry</button>
-      </form>
-      <div id="philosophy-status" class="status"></div>
-      
-      <div class="item-list" id="philosophy-list">
-        <p>Loading...</p>
-      </div>
-    </div>
-
-    <!-- Misc Tab -->
-    <div id="misc-tab" class="tab-content">
-      <h2>Add Misc Item</h2>
-      <form id="misc-form">
-        <div class="form-group">
-          <label for="misc-title">Title *</label>
-          <input type="text" id="misc-title" name="title" placeholder="e.g., Random Experiment" required>
-        </div>
-        <div class="form-group">
-          <label for="misc-content">Content</label>
-          <textarea id="misc-content" name="content" placeholder="Optional description..."></textarea>
-        </div>
-        <div class="form-group">
-          <label for="misc-url">URL</label>
-          <input type="url" id="misc-url" name="url" placeholder="https://example.com (optional)">
-        </div>
-        <button type="submit" class="submit-btn">✨ Add Item</button>      </form>
-      <div id="misc-status" class="status"></div>
-      
-      <div class="item-list" id="misc-list">
-        <p>Loading...</p>
-      </div>
-    </div>
-
-    <a href="/logout" class="logout-btn">🚪 Logout</a>
   </div>
-
-  <script>
-    // Theme
-    const html = document.documentElement;
-    const saved = localStorage.getItem('theme') || 'dark';
-    html.setAttribute('data-theme', saved);
-
-    // Tab switching
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab + '-tab').classList.add('active');
-        
-        // Load data when tab is opened
-        if (tab.dataset.tab === 'photos') loadPhotos();
-        else if (tab.dataset.tab === 'tools') loadTools();
-        else if (tab.dataset.tab === 'philosophy') loadPhilosophy();
-        else if (tab.dataset.tab === 'misc') loadMisc();
-      });
-    });
-
-    // Show status message
-    function showStatus(elementId, message, isSuccess) {
-      const el = document.getElementById(elementId);
-      el.textContent = message;
-      el.className = `status ${isSuccess ? 'success' : 'error'} show`;
-      setTimeout(() => el.classList.remove('show'), 5000);
-    }
-
-    // Photos Form
-    document.getElementById('photo-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const file = document.getElementById('photo-file').files[0];
-      const caption = document.getElementById('photo-caption').value;
-      const formData = new FormData();
-      formData.append('photo', file);
-      formData.append('caption', caption);
-            try {
-        const res = await fetch('/api/upload', { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data.success) {
-          showStatus('photo-status', '✓ Photo uploaded!', true);
-          document.getElementById('photo-form').reset();
-          loadPhotos();
-        } else {
-          throw new Error(data.error);
-        }
-      } catch (err) {
-        showStatus('photo-status', '✗ ' + err.message, false);
-      }
-    });
-
-    // Tools Form
-    document.getElementById('tool-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('tool-name').value;
-      const url = document.getElementById('tool-url').value;
-      const desc = document.getElementById('tool-desc').value;
-      
-      try {
-        const res = await fetch('/api/tools', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, url, description: desc })
-        });
-        const data = await res.json();
-        if (data.success) {
-          showStatus('tool-status', '✓ Tool added!', true);
-          document.getElementById('tool-form').reset();
-          loadTools();
-        } else {
-          throw new Error(data.error);
-        }
-      } catch (err) {
-        showStatus('tool-status', '✗ ' + err.message, false);
-      }
-    });
-
-    // Philosophy Form
-    document.getElementById('philosophy-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const title = document.getElementById('philosophy-title').value;
-      const content = document.getElementById('philosophy-content').value;
-      
-      try {
-        const res = await fetch('/api/philosophy', {
-          method: 'POST',          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, content })
-        });
-        const data = await res.json();
-        if (data.success) {
-          showStatus('philosophy-status', '✓ Entry added!', true);
-          document.getElementById('philosophy-form').reset();
-          loadPhilosophy();
-        } else {
-          throw new Error(data.error);
-        }
-      } catch (err) {
-        showStatus('philosophy-status', '✗ ' + err.message, false);
-      }
-    });
-
-    // Misc Form
-    document.getElementById('misc-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const title = document.getElementById('misc-title').value;
-      const content = document.getElementById('misc-content').value;
-      const url = document.getElementById('misc-url').value;
-      
-      try {
-        const res = await fetch('/api/misc', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, content, url })
-        });
-        const data = await res.json();
-        if (data.success) {
-          showStatus('misc-status', '✓ Item added!', true);
-          document.getElementById('misc-form').reset();
-          loadMisc();
-        } else {
-          throw new Error(data.error);
-        }
-      } catch (err) {
-        showStatus('misc-status', '✗ ' + err.message, false);
-      }
-    });
-
-    // Load Photos
-    async function loadPhotos() {
-      const list = document.getElementById('photos-list');
-      try {
-        const res = await fetch('/api/photos');
-        const items = await res.json();
-        if (items.length === 0) {
-          list.innerHTML = '<div class="empty-state"><p>📭 No photos uploaded yet</p></div>';          return;
-        }
-        list.innerHTML = items.map(item => `
-          <div class="item-card">
-            <h4>${item.filename}</h4>
-            <p>${item.caption || 'No caption'}</p>
-            <p><small>${new Date(item.created_at).toLocaleDateString()}</small></p>
-            <button class="delete-btn" data-id="${item.id}" data-type="photo">Delete</button>
-          </div>
-        `).join('');
-        setupDeleteListeners('photo');
-      } catch (err) {
-        list.innerHTML = '<p style="color:#6b2d2d;">Failed to load photos</p>';
-      }
-    }
-
-    // Load Tools
-    async function loadTools() {
-      const list = document.getElementById('tools-list');
-      try {
-        const res = await fetch('/api/tools');
-        const items = await res.json();
-        if (items.length === 0) {
-          list.innerHTML = '<div class="empty-state"><p>📭 No tools added yet</p></div>';
-          return;
-        }
-        list.innerHTML = items.map(item => `
-          <div class="item-card">
-            <h4>${item.name}</h4>
-            <p>${item.description || 'No description'}</p>
-            <a href="${item.url}" target="_blank">${item.url}</a>
-            <button class="delete-btn" data-id="${item.id}" data-type="tool">Delete</button>
-          </div>
-        `).join('');
-        setupDeleteListeners('tool');
-      } catch (err) {
-        list.innerHTML = '<p style="color:#6b2d2d;">Failed to load tools</p>';
-      }
-    }
-
-    // Load Philosophy
-    async function loadPhilosophy() {
-      const list = document.getElementById('philosophy-list');
-      try {
-        const res = await fetch('/api/philosophy');
-        const items = await res.json();
-        if (items.length === 0) {
-          list.innerHTML = '<div class="empty-state"><p>📭 No philosophy entries yet</p></div>';
-          return;
-        }        list.innerHTML = items.map(item => `
-          <div class="item-card">
-            <h4>${item.title}</h4>
-            <p>${item.content.substring(0, 100)}${item.content.length > 100 ? '...' : ''}</p>
-            <p><small>${new Date(item.created_at).toLocaleDateString()}</small></p>
-            <button class="delete-btn" data-id="${item.id}" data-type="philosophy">Delete</button>
-          </div>
-        `).join('');
-        setupDeleteListeners('philosophy');
-      } catch (err) {
-        list.innerHTML = '<p style="color:#6b2d2d;">Failed to load philosophy</p>';
-      }
-    }
-
-    // Load Misc
-    async function loadMisc() {
-      const list = document.getElementById('misc-list');
-      try {
-        const res = await fetch('/api/misc');
-        const items = await res.json();
-        if (items.length === 0) {
-          list.innerHTML = '<div class="empty-state"><p>📭 No misc items yet</p></div>';
-          return;
-        }
-        list.innerHTML = items.map(item => `
-          <div class="item-card">
-            <h4>${item.title}</h4>
-            <p>${item.content || ''}</p>
-            ${item.url ? `<a href="${item.url}" target="_blank">${item.url}</a>` : ''}
-            <button class="delete-btn" data-id="${item.id}" data-type="misc">Delete</button>
-          </div>
-        `).join('');
-        setupDeleteListeners('misc');
-      } catch (err) {
-        list.innerHTML = '<p style="color:#6b2d2d;">Failed to load misc items</p>';
-      }
-    }
-
-    // Setup delete button listeners
-    function setupDeleteListeners(type) {
-      document.querySelectorAll(`.delete-btn[data-type="${type}"]`).forEach(btn => {
-        btn.addEventListener('click', async () => {
-          if (!confirm('Delete this item?')) return;
-          const id = btn.dataset.id;
-          try {
-            await fetch(`/api/${type}s/${id}`, { method: 'DELETE' });
-            if (type === 'photo') loadPhotos();
-            else if (type === 'tool') loadTools();
-            else if (type === 'philosophy') loadPhilosophy();
-            else if (type === 'misc') loadMisc();          } catch (err) {
-            alert('Failed to delete');
-          }
-        });
-      });
-    }
-
-    // Initial load
-    loadPhotos();
-  </script>
+  <script src="/js/admin-script.js"></script>
 </body>
 </html>
