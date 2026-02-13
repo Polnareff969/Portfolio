@@ -1,20 +1,17 @@
 :root {
-  --bg: #050505;
-  --text: #eeeeee;
-  --text-dim: #777777;
-  --accent: #d4d4d8;
-  --border: #1a1a1a;
-  --card-bg: #0c0c0c;
-  --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --bg: #000000;
+  --text: #ffffff;
+  --text-dim: #888888;
+  --accent: #ffffff;
+  --border: #222222;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 [data-theme="light"] {
   --bg: #ffffff;
-  --text: #111111;
+  --text: #000000;
   --text-dim: #666666;
-  --accent: #222222;
   --border: #eeeeee;
-  --card-bg: #f5f5f7;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -22,52 +19,72 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', -apple-system, sans-serif;
-  line-height: 1.6;
-  transition: background-color 0.5s ease;
+  font-family: var(--font-main);
+  transition: background 0.3s ease;
 }
 
-.container { max-width: 900px; margin: 0 auto; padding: 0 30px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-/* Navigation */
-header { padding: 50px 0; }
+/* Modern Nav */
+header { padding: 40px 0; position: sticky; top: 0; background: var(--bg); z-index: 100; }
 nav { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1rem; font-weight: 500; text-decoration: none; color: var(--text); letter-spacing: -0.02em; }
-.nav-links { display: flex; gap: 24px; }
-.nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: var(--transition); text-transform: lowercase; }
+.logo { font-weight: 600; text-decoration: none; color: var(--text); font-size: 1.1rem; letter-spacing: -0.03em; }
+
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links a { 
+  color: var(--text-dim); 
+  text-decoration: none; 
+  font-size: 0.85rem; 
+  font-weight: 500; 
+  transition: 0.2s; 
+}
 .nav-links a:hover { color: var(--text); }
 
-/* Hero Section */
-.profile-hero { padding: 40px 0 80px; display: flex; align-items: center; gap: 25px; }
-.avatar-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); transition: var(--transition); background: var(--card-bg); }
-.avatar-img:hover { filter: grayscale(0%); }
-.profile-info h1 { font-size: 1.2rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 2px; }
-.profile-info p { color: var(--text-dim); font-size: 0.9rem; }
+#theme-toggle {
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
 
-/* Grid (Art / Index) */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; padding-bottom: 100px; }
-.photo-card { opacity: 0; transform: translateY(10px); }
-.photo-card.reveal { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
-.photo-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 2px; display: block; filter: saturate(0.8); transition: var(--transition); }
-.photo-card:hover img { filter: saturate(1.1); }
-.photo-caption { padding: 12px 0; font-size: 0.8rem; color: var(--text-dim); text-transform: lowercase; }
+/* Page Intro - Oversized Typography */
+.page-intro { padding: 100px 0 60px; }
+.page-intro h1 { font-size: 5rem; font-weight: 700; letter-spacing: -0.05em; margin-bottom: 20px; line-height: 0.9; }
+.page-intro p { color: var(--text-dim); font-size: 1.2rem; max-width: 500px; line-height: 1.5; }
 
-/* Lists (Philosophy, Tools, Misc) */
-.list-section { padding-bottom: 100px; }
-.list-item { padding: 32px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
-.item-body { flex: 1; }
-.item-body h2 { font-size: 1rem; font-weight: 500; margin-bottom: 8px; }
-.item-body p { color: var(--text-dim); font-size: 0.9rem; max-width: 550px; white-space: pre-wrap; }
-.item-meta { min-width: 100px; font-size: 0.75rem; color: var(--text-dim); text-align: right; text-transform: uppercase; letter-spacing: 0.05em; }
-.item-link { font-size: 0.8rem; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--text-dim); margin-top: 10px; display: inline-block; }
+/* Minimalist Profile */
+.profile-hero { padding: 80px 0; display: flex; flex-direction: column; align-items: flex-start; }
+.avatar-img { width: 100%; max-width: 600px; height: auto; border-radius: 0; filter: grayscale(1); margin-bottom: 40px; }
+.profile-info h1 { font-size: 4rem; margin-bottom: 10px; letter-spacing: -0.04em; }
 
-/* Theme Toggle */
-#theme-toggle { background: none; border: none; cursor: pointer; color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-#theme-toggle:hover { color: var(--text); }
+/* Content List (Philosophy/Tools) */
+.list-item { 
+  border-top: 1px solid var(--border); 
+  padding: 40px 0; 
+  display: grid; 
+  grid-template-columns: 1fr 2fr;
+  transition: 0.3s;
+}
+.list-item:hover { border-top-color: var(--text); }
+.item-meta { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; }
+.item-body h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; }
+.item-body p { color: var(--text-dim); font-size: 1rem; line-height: 1.6; }
 
-@media (max-width: 600px) {
-  .profile-hero { flex-direction: column; align-items: flex-start; gap: 15px; }
-  .list-item { flex-direction: column; gap: 12px; }
-  .item-meta { text-align: left; }
-  .nav-links { gap: 12px; }
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; padding-bottom: 100px; }
+.photo-card img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1); transition: 0.5s; }
+.photo-card:hover img { filter: grayscale(0); }
+
+/* Mobile Fixes */
+@media (max-width: 768px) {
+  .page-intro h1 { font-size: 3rem; }
+  .list-item { grid-template-columns: 1fr; gap: 10px; }
+  .grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 15px; }
+  .nav-links a { font-size: 0.75rem; }
 }
